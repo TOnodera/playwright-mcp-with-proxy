@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  proxy:
+    image: ubuntu/squid:latest
+    container_name: ai-proxy
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf:ro
+    restart: unless-stopped
+
+  ai-browser:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai-browser
+      args:
+        - USER_ID=${USER_ID:-1000}
+    container_name: ai-browser
+    depends_on:
+      - proxy
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ai_browser_artifacts:/artifacts
+      - ai_browser_user_data:/home/pwuser/browser-data
+      - ./seccomp_profile.json:/seccomp_profile.json:ro
+    environment:
+      HTTP_PROXY: http://proxy:3128
+      HTTPS_PROXY: http://proxy:3128
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+    shm_size: "1gb"
+    init: true
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+volumes:
+  ai_browser_artifacts:
+  ai_browser_user_data:

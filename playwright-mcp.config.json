@@ -1,0 +1,13 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "isolated": true,
+    "userDataDir": "/home/pwuser/browser-data",
+    "launchOptions": {
+      "headless": true,
+      "proxy": {
+        "server": "http://proxy:3128"
+      }
+    }
+  }
+}

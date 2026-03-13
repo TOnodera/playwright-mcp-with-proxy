@@ -1,0 +1,35 @@
+{
+  "servers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--isolated",
+        "--config",
+        "${workspaceFolder}/playwright-mcp.config.json"
+      ],
+      "sandboxEnabled": true,
+      "sandbox": {
+        "filesystem": {
+          "allowWrite": [
+            "${workspaceFolder}",
+            "/artifacts"
+          ]
+        },
+        "network": {
+          "allowedDomains": [
+            "localhost",
+            "127.0.0.1",
+            "host.docker.internal",
+            "stg.example.internal",
+            "accounts.google.com",
+            "www.googleapis.com",
+            "gstatic.com"
+          ]
+        }
+      }
+    }
+  }
+}
