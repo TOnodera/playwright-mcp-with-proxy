@@ -8,7 +8,7 @@ USER ubuntu
 WORKDIR /workspace
 
 # 念のため npm キャッシュ先をユーザー領域へ
-ENV npm_config_cache=/home/pwuser/.npm
+ENV npm_config_cache=/home/ubuntu/.npm
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 CMD ["bash"]
