@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   proxy:
     image: ubuntu/squid:latest
@@ -8,14 +6,9 @@ services:
       - "3128:3128"
     volumes:
       - ./squid.conf:/etc/squid/squid.conf:ro
-    restart: unless-stopped
 
   ai-browser:
-    build:
-      context: .
-      dockerfile: Dockerfile.ai-browser
-      args:
-        - USER_ID=${USER_ID:-1000}
+    build: .
     container_name: ai-browser
     depends_on:
       - proxy
@@ -29,11 +22,8 @@ services:
       HTTP_PROXY: http://proxy:3128
       HTTPS_PROXY: http://proxy:3128
       PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
-    shm_size: "1gb"
-    init: true
-    stdin_open: true
-    tty: true
-    restart: unless-stopped
+    shm_size: "1gb" # デフォルト値64mbだと小さすぎるので設定
+    init: true # pid:1 のinit的なことやってくれるらしい入れておくとゾンビの回収してくれるので安定するらしい
 
 volumes:
   ai_browser_artifacts:
