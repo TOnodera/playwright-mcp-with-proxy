@@ -1,0 +1,29 @@
+{
+  "name": "playwright-mcp-with-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mcp": "playwright-mcp --config playwright-mcp.config.json --host 0.0.0.0 --port 8931 --output-dir /workspace/.mcp-artifacts --save-trace",
+    "mcp:local": "playwright-mcp --config playwright-mcp.config.json --host localhost --port 8931 --output-dir /workspace/.mcp-artifacts --save-trace"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TOnodera/playwright-mcp-with-proxy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TOnodera/playwright-mcp-with-proxy/issues"
+  },
+  "homepage": "https://github.com/TOnodera/playwright-mcp-with-proxy#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0"
+  },
+  "dependencies": {
+    "@playwright/mcp": "^0.0.68"
+  }
+}

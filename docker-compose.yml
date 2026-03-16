@@ -19,8 +19,12 @@ services:
       - ai_browser_user_data:/home/pwuser/browser-data
       - ./seccomp_profile.json:/seccomp_profile.json:ro
     environment:
-      HTTP_PROXY: http://proxy:3128
-      HTTPS_PROXY: http://proxy:3128
+      MCPPORT: "8931"
+      MCP_HOST: "0.0.0.0"
+      ARTIFACT_DIR: "/workspace/.mcp-artifacts"
+      PROXY_SERVER: "http://proxy:3128"
+      HTTP_PROXY: "http://proxy:3128"
+      HTTPS_PROXY: "http://proxy:3128"
       PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
     shm_size: "1gb" # デフォルト値64mbだと小さすぎるので設定
     init: true # pid:1 のinit的なことやってくれるらしい入れておくとゾンビの回収してくれるので安定するらしい
