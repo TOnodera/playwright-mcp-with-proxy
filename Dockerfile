@@ -3,7 +3,8 @@ FROM mcr.microsoft.com/playwright:v1.58.2-noble
 
 RUN mkdir -p /artifacts /home/pwuser/browser-data /workspace \
   && chown -R ubuntu:ubuntu /artifacts /home/pwuser /workspace \
-  && npx playwright install-deps
+  && npx playwright install-deps \
+  && npx playwright install chrome
   
 WORKDIR /workspace
 
